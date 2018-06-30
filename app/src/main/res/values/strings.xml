@@ -1,0 +1,11 @@
+<resources>
+    <string name="all_app_name">AndroidBase</string>
+    <string name="all_submit">Submit</string>
+    <string name="demo_welcome_message">Welcome to the demo portion of this base application! It\'s
+        a simple showcase of the app\'s architecture. Enter a message below and a toast will appear
+        with the message printed in reverse. The ViewModel backs the input text, so it will be
+        preserved on orientation changes. The text reversal is to demonstrate Dependency Injection
+        through Dagger2 by providing an interface implementation that is responsible for the
+        operation.
+    </string>
+</resources>
