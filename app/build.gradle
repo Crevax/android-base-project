@@ -8,7 +8,7 @@ apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 27
-    buildToolsVersion "27.0.3"
+    buildToolsVersion '28.0.2'
 
     defaultConfig {
         applicationId "com.github.crevax.androidbase"
@@ -47,7 +47,6 @@ dependencies {
     kapt "android.arch.lifecycle:compiler:$lifecycle_version"
 
     //Data Binding
-    kapt "com.android.databinding:compiler:$gradle_version"
 
     // Dagger
     implementation "com.google.dagger:dagger-android-support:$dagger_version"
