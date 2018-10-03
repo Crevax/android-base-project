@@ -25,10 +25,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
-    dataBinding {
-        enabled = true
-    }
 }
 
 dependencies {
@@ -45,8 +41,6 @@ dependencies {
     // Android Architecture
     implementation "android.arch.lifecycle:extensions:$lifecycle_version"
     kapt "android.arch.lifecycle:compiler:$lifecycle_version"
-
-    //Data Binding
 
     // Dagger
     implementation "com.google.dagger:dagger-android-support:$dagger_version"

@@ -2,26 +2,19 @@ package com.github.crevax.androidbase.ui.common.base
 
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
-import android.databinding.DataBindingUtil
-import android.databinding.ViewDataBinding
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import javax.inject.Inject
-import com.github.crevax.androidbase.BR
 import com.github.crevax.androidbase.di.Injectable
 import com.github.crevax.androidbase.ui.common.ViewLifeCycleFragment
 
-abstract class BaseFragment<TViewModel: BaseViewModel, TBinding: ViewDataBinding>
+abstract class BaseFragment<TViewModel: BaseViewModel>
     : ViewLifeCycleFragment(), Injectable {
 
     @Inject lateinit var viewModelFactory: ViewModelProvider.Factory
 
     protected abstract val viewModelClassToken: Class<TViewModel>
-    protected abstract val layoutId: Int
 
-    protected var binding: TBinding? = null
     protected open lateinit var vm: TViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,22 +30,10 @@ abstract class BaseFragment<TViewModel: BaseViewModel, TBinding: ViewDataBinding
         subscribeUI()
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-            DataBindingUtil.inflate<TBinding>(inflater, layoutId, container, false).also {
-                it.setVariable(BR.vm, vm)
-                binding = it
-            }.root
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         (vm as? LifeCycleViewModel)?.startLoading(lifeCycleOwner)
-    }
-
-    override fun onDestroy() {
-        binding = null
-
-        super.onDestroy()
     }
 
     /**
